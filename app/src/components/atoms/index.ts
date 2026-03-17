@@ -1,0 +1,4 @@
+export { Heading, H1, H2, H3, H4, H5, H6 } from './Heading'
+export { Body } from './Body'
+export { Caption } from './Caption'
+export { Color, COLORS } from './ColorPalette'
