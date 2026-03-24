@@ -73,8 +73,8 @@ export function SearchBar({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className={cn(
-            'w-full px-4 py-2 rounded-lg border border-border bg-input',
-            'text-foreground placeholder-muted-foreground',
+            'w-full px-4 py-3 rounded-lg border-0 bg-white',
+            'text-foreground placeholder-gray-400',
             'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
             'transition-all'
           )}

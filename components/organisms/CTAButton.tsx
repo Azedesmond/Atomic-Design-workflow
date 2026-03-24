@@ -18,8 +18,8 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<CTAVariant, string> = {
-  primary: 'bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80',
-  secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80',
+  primary: 'bg-primary text-white hover:bg-primary/90 active:bg-primary/80',
+  secondary: 'bg-secondary text-white hover:bg-secondary/90 active:bg-secondary/80',
   outline: 'border border-border text-foreground hover:bg-muted active:bg-muted/80',
   ghost: 'text-foreground hover:bg-muted active:bg-muted/80',
 }
