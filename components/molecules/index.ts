@@ -1,3 +1,4 @@
+// Molecules - Simple component combinations of atoms
 export { Badge } from './Badge'
 export { BadgeGroup } from './BadgeGroup'
 export { CardHeader } from './CardHeader'

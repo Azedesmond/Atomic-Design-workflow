@@ -10,6 +10,8 @@ interface SearchBarProps extends React.HTMLAttributes<HTMLDivElement> {
   onBack?: () => void
   showBackButton?: boolean
   className?: string
+  showButton?: boolean
+  onSearchClick?: () => void
 }
 
 export function SearchBar({
@@ -18,6 +20,8 @@ export function SearchBar({
   onBack,
   showBackButton = false,
   className,
+  showButton = false,
+  onSearchClick,
   ...props
 }: SearchBarProps) {
   const [query, setQuery] = useState('')
@@ -40,7 +44,7 @@ export function SearchBar({
   }
 
   return (
-    <div className={cn('flex items-center gap-2', className)} {...props}>
+    <div className={cn('flex items-stretch gap-3', className)} {...props}>
       {/* Back Button */}
       {showBackButton && (
         <button
@@ -64,8 +68,11 @@ export function SearchBar({
         </button>
       )}
 
-      {/* Search Input */}
-      <div className="flex-1 relative">
+      {/* Search Input - Unified with arrow button INSIDE */}
+      <div className="flex-1 relative flex items-center bg-white rounded-lg overflow-hidden">
+        <svg className="w-5 h-5 text-[#FF5722] ml-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
         <input
           type="text"
           value={query}
@@ -73,19 +80,42 @@ export function SearchBar({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className={cn(
-            'w-full px-4 py-3 rounded-lg border-0 bg-white',
-            'text-foreground placeholder-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+            'flex-1 px-3 py-3 bg-white',
+            'text-foreground placeholder-gray-500',
+            'focus:outline-none',
             'transition-all'
           )}
           aria-label={placeholder}
         />
 
+        {/* Arrow Button INSIDE input container on the right */}
+        {showButton && (
+          <button
+            onClick={onSearchClick}
+            className="bg-[#FF5722] hover:bg-[#E64A19] text-white p-3 transition-colors duration-200 flex items-center justify-center flex-shrink-0"
+            aria-label="Search"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7m0 0l-7 7m7-7H5"
+              />
+            </svg>
+          </button>
+        )}
+
         {/* Clear Button */}
-        {query && (
+        {query && !showButton && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 flex-shrink-0 p-1 rounded hover:bg-muted transition-colors"
+            className="mr-3 flex-shrink-0 p-1 rounded hover:bg-muted transition-colors"
             aria-label="Clear search"
           >
             <svg

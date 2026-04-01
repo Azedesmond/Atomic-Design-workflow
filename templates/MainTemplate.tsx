@@ -1,6 +1,23 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
+/**
+ * MainTemplate Component
+ * 
+ * A flexible layout template that composes the main application structure.
+ * Provides semantic HTML structure with sticky header, navigation, hero section,
+ * optional sidebar, and footer. Responds to all viewport sizes.
+ * 
+ * @example
+ * <MainTemplate
+ *   header={<Header />}
+ *   navigation={<Nav />}
+ *   hero={<Hero />}
+ *   main={<MainContent />}
+ *   footer={<Footer />}
+ * />
+ */
+
 interface MainTemplateProps {
   header?: React.ReactNode
   navigation?: React.ReactNode

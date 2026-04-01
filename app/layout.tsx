@@ -16,8 +16,8 @@ const sourceSansPro = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Skillflash - Expert Skills & Training Platform',
+  description: 'Discover diverse skills, expert training, and events. Learn from professionals with our comprehensive Skillflash platform.',
   generator: 'v0.app',
   icons: {
     icon: [

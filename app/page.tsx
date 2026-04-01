@@ -4,250 +4,109 @@ import React, { useState } from 'react'
 import { MainTemplate } from '@/templates/MainTemplate'
 import { ContentCard, CardGrid, ProfileDropdown, SearchBar, CTAButton } from '@/components/organisms'
 import { H1, Body } from '@/components/atoms'
-import { Badge } from '@/components/molecules'
-
-// Mock data for content cards
-const skillCards = [
-  {
-    id: 1,
-    title: 'Projektmanagement',
-    description: 'Als Projektmanagement wird das Verwalten, Planen, Steuern und Kontrollieren von Projekten bezeichnet. Es...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-      alt: 'Projektmanagement',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Netzwerk', variant: 'primary-blue' as const },
-      { id: 2, label: 'API', variant: 'primary-blue' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 2,
-    title: 'Frontend Development',
-    description: 'Frontend Development beschreibt eine Highfunction web Anwendung. In diesem Kurs lernen Sie...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop',
-      alt: 'Frontend Development',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'JavaScript', variant: 'primary-blue' as const },
-      { id: 2, label: 'Bootstrap', variant: 'primary-blue' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 3,
-    title: 'Grafikdesign',
-    description: 'Entdecken Sie wesentlichen, Design-Thinking, Muster, den Ansatz und die hohe...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
-      alt: 'Grafikdesign',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Photoshop', variant: 'primary-orange' as const },
-      { id: 2, label: 'Sketch', variant: 'primary-orange' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 4,
-    title: 'Training',
-    description: 'Training ist die physiotheque und Optimierung verbreitete Kosten...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-      alt: 'Training',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Personal', variant: 'primary-lila' as const },
-      { id: 2, label: 'Keynote', variant: 'primary-lila' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 5,
-    title: 'Künstlerische',
-    description: 'Ein intensiv in der Kunst Handwerk zur Multimedia, da zu einer...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
-      alt: 'Künstlerische',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'English', variant: 'primary-fade' as const },
-      { id: 2, label: 'Spanish', variant: 'primary-fade' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 6,
-    title: 'Design',
-    description: 'Design und Gedanken über Zeichnung, Muster, die zu über Seiten...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop',
-      alt: 'Design',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Research', variant: 'secondary-pink' as const },
-      { id: 2, label: 'Prototype', variant: 'secondary-pink' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 7,
-    title: 'Management',
-    description: 'In dieser verlängen Formeln wird unter Management ausgerechnet...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-      alt: 'Management',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Lean', variant: 'secondary-pink' as const },
-      { id: 2, label: 'Agile', variant: 'secondary-pink' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 8,
-    title: 'Lean Startup',
-    description: 'Lean Startup ist in der Betriebswirtschaftslehre der Analytiken...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
-      alt: 'Lean Startup',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'Scrum', variant: 'primary-blue' as const },
-      { id: 2, label: 'Metrics', variant: 'primary-blue' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-  {
-    id: 9,
-    title: 'Blockchain',
-    description: 'Blockchain, Chromabruch, Ethik aufs Blick des Leaks und in der...',
-    image: {
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-      alt: 'Blockchain',
-      aspectRatio: 'square' as const,
-    },
-    badges: [
-      { id: 1, label: 'STD', variant: 'primary-lila' as const },
-      { id: 2, label: 'Architecture', variant: 'primary-lila' as const },
-    ],
-    footer: <Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>,
-  },
-]
-
-// Navigation items
-const navItems = [
-  { label: 'Skillflash', href: '#' },
-  { label: 'Expert:in werden', href: '#' },
-  { label: 'Enterprise', href: '#' },
-]
-
-// Profile dropdown items
-const profileItems = [
-  { id: 1, label: 'Registrieren', onClick: () => console.log('Registrieren') },
-  { id: 2, label: 'Anmelden', onClick: () => console.log('Anmelden') },
-  { id: 3, label: 'Expert:in werden', onClick: () => console.log('Expert:in werden') },
-  { id: 4, label: 'Enterprise', onClick: () => console.log('Enterprise') },
-  { id: 5, label: 'Hilfe?', onClick: () => console.log('Hilfe') },
-]
-
-// User avatar
-const userAvatar = {
-  src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&h=40&fit=crop&crop=faces',
-  alt: 'User Profile',
-}
+import { NAV_ITEMS, PROFILE_MENU_ITEMS, DEFAULT_USER_AVATAR, SKILL_CARDS } from '@/lib/constants'
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Header component
-  const header = (
-    <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between border-b border-border bg-white">
-      <div className="flex items-center gap-4">
-        <h1 className="text-lg font-bold text-foreground">Skillflash</h1>
-      </div>
-      <div className="flex items-center gap-4">
-        <input
-          type="text"
-          placeholder="Skills finden..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="hidden sm:block px-3 py-2 rounded-md bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-        <ProfileDropdown
-          avatar={userAvatar}
-          userName="Aze"
-          items={profileItems}
-        />
-      </div>
-    </div>
-  )
+  // Header component - removed, header is integrated into navigation bar
+  const header = null
 
-  // Navigation bar
+  // Navigation bar with header elements
   const navigation = (
-    <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-8 bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8]">
-      {navItems.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          className="text-white hover:opacity-80 font-semibold text-sm transition-opacity"
-        >
-          {item.label}
-        </a>
-      ))}
+    <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8]">
+      <div className="flex items-center gap-2">
+        <h1 className="text-white font-bold text-lg">Skillflash</h1>
+        {NAV_ITEMS.slice(1).map((item, index) => (
+          <a
+            key={item.label}
+            href={item.href}
+            className="group flex items-center gap-2 px-3 py-2 text-white font-semibold text-sm transition-all duration-300 hover:gap-4"
+          >
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">›</span>
+            <span className="group-hover:translate-x-1 transition-transform duration-300">{item.label}</span>
+          </a>
+        ))}
+      </div>
+      <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-2 bg-white bg-opacity-20 rounded-lg px-3 py-2">
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Skills finden.."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-transparent text-white placeholder-white placeholder-opacity-70 text-sm focus:outline-none"
+          />
+          <svg className="w-4 h-4 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7m0 0l-7 7m7-7H5" />
+          </svg>
+        </div>
+        <button className="md:hidden text-white hover:opacity-80 transition-opacity">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+        <button className="text-white hover:opacity-80 transition-opacity">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <ProfileDropdown
+          avatar={DEFAULT_USER_AVATAR}
+          userName="User"
+          items={PROFILE_MENU_ITEMS}
+        />
+      </div>
     </div>
   )
 
   // Hero section
   const hero = (
-    <div className="relative px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8] overflow-hidden">
-      {/* Curved wave background */}
-      <div className="absolute inset-x-0 bottom-0 h-32 overflow-hidden">
-        <svg
-          viewBox="0 0 1440 120"
-          className="absolute bottom-0 w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="white"
-            fillOpacity="1"
-            d="M0,40L120,45C240,50,480,60,720,60C960,60,1200,50,1320,45L1440,40L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z"
-          ></path>
-        </svg>
-      </div>
+    <div 
+      className="relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8] overflow-hidden"
+      style={{
+        clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 95%, 0 85%)',
+      }}
+    >
+      {/* Dot pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
+          backgroundPosition: '0 0',
+        }}
+      ></div>
 
-      <div className="relative z-10 max-w-4xl">
-        <H1 className="text-3xl sm:text-4xl lg:text-5xl text-white mb-3 font-bold">
-          Expert:innen, Events und diverse Skills
+      <div className="relative z-10 max-w-5xl mx-auto text-center pt-4 pb-20">
+        <H1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6 font-bold leading-tight tracking-tight">
+          Bring Deine Skills auf das nächste Level
         </H1>
-        <Body className="text-white text-opacity-95 mb-8 text-base leading-relaxed">
+        <Body className="text-white text-opacity-95 mb-12 text-lg leading-relaxed max-w-2xl mx-auto">
           Wir vermitteln fundierte Skills für Dich und Dein Team durch diverse Formate und professionelle Expert:innen.
         </Body>
 
-        {/* Search Bar */}
-        <SearchBar
-          placeholder="Skills für den Erfolg finden..."
-          onSearch={(query) => setSearchQuery(query)}
-          className="mb-6"
-        />
+        {/* Search Bar with Button */}
+        <div className="flex flex-col items-center gap-6">
+          <SearchBar
+            placeholder="Skills für den Erfolg finden.."
+            onSearch={(query) => setSearchQuery(query)}
+            showButton={true}
+            onSearchClick={() => console.log('Search clicked')}
+            className="w-full max-w-2xl"
+          />
 
-        <CTAButton
-          onClick={() => console.log('Configure search')}
-          variant="primary"
-          size="md"
-        >
-          Suche konfigurieren
-        </CTAButton>
+          <CTAButton
+            onClick={() => console.log('Configure search')}
+            variant="tertiary"
+            size="md"
+          >
+            Suche konfigurieren ⇘
+          </CTAButton>
+        </div>
       </div>
     </div>
   )
@@ -263,7 +122,7 @@ export default function HomePage() {
         }}
         gap="lg"
       >
-        {skillCards.map((card) => (
+        {SKILL_CARDS.map((card) => (
           <ContentCard
             key={card.id}
             title={card.title}
@@ -271,7 +130,7 @@ export default function HomePage() {
             image={card.image}
             badges={card.badges}
             layout="vertical"
-            footer={card.footer}
+            footer={<Body size="sm" className="text-muted-foreground">Mehr anzeigen</Body>}
           />
         ))}
       </CardGrid>

@@ -50,7 +50,7 @@ export function ProfileDropdown({
       {/* Trigger Button */}
       <button
         onClick={handleToggle}
-        className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted transition-colors"
+        className="flex items-center gap-2 p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-200"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >

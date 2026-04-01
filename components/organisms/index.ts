@@ -1,3 +1,4 @@
+// Organisms - Complex components composed of molecules
 export { ContentCard } from './ContentCard'
 export { CardGrid } from './CardGrid'
 export { ProfileDropdown } from './ProfileDropdown'

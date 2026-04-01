@@ -4,7 +4,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { Body } from '@/components/atoms'
 
-type CTAVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
+type CTAVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'tertiary'
 type CTASize = 'sm' | 'md' | 'lg'
 
 interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,10 +18,11 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<CTAVariant, string> = {
-  primary: 'bg-primary text-white hover:bg-primary/90 active:bg-primary/80',
-  secondary: 'bg-secondary text-white hover:bg-secondary/90 active:bg-secondary/80',
-  outline: 'border border-border text-foreground hover:bg-muted active:bg-muted/80',
-  ghost: 'text-foreground hover:bg-muted active:bg-muted/80',
+  primary: 'bg-primary text-white hover:bg-primary/90 hover:shadow-lg active:bg-primary/80 transition-all duration-200',
+  secondary: 'bg-secondary text-white hover:bg-secondary/90 hover:shadow-lg active:bg-secondary/80 transition-all duration-200',
+  outline: 'border border-border text-foreground hover:bg-muted hover:shadow-lg active:bg-muted/80 transition-all duration-200',
+  ghost: 'text-foreground hover:bg-muted hover:shadow-lg active:bg-muted/80 transition-all duration-200',
+  tertiary: 'text-white hover:text-white/80 transition-all duration-200 bg-transparent',
 }
 
 const sizeStyles: Record<CTASize, string> = {
@@ -45,7 +46,7 @@ export function CTAButton({
     <button
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg',
-        'font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+        'font-semibold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         variantStyles[variant],
         sizeStyles[size],
