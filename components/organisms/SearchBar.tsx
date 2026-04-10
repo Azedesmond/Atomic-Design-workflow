@@ -70,7 +70,7 @@ export function SearchBar({
 
       {/* Search Input - Unified with arrow button INSIDE */}
       <div className="flex-1 relative flex items-center bg-white rounded-lg overflow-hidden">
-        <svg className="w-5 h-5 text-[#FF5722] ml-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-[#FF5722] ml-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <input
@@ -92,11 +92,11 @@ export function SearchBar({
         {showButton && (
           <button
             onClick={onSearchClick}
-            className="bg-[#FF5722] hover:bg-[#E64A19] text-white p-3 transition-colors duration-200 flex items-center justify-center flex-shrink-0"
+            className="bg-[#FF5722] hover:bg-[#ffffff] text-white p-3 transition-colors duration-200 flex items-center justify-center shrink-0"
             aria-label="Search"
           >
             <svg
-              className="w-5 h-5"
+              className="w4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
