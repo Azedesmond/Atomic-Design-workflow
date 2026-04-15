@@ -1,11 +1,9 @@
 'use client'
-
 import React, { useState } from 'react'
 import { MainTemplate } from '@/templates/MainTemplate'
 import { ContentCard, CardGrid, ProfileDropdown, SearchBar, CTAButton } from '@/components/organisms'
 import { H1, Body } from '@/components/atoms'
 import { NAV_ITEMS, PROFILE_MENU_ITEMS, DEFAULT_USER_AVATAR, SKILL_CARDS } from '@/lib/constants'
-
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -66,22 +64,19 @@ export default function HomePage() {
   // Hero section
   const hero = (
     <div 
-      className="relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8] overflow-hidden"
-      style={{
-        clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 95%, 0 85%)',
-      }}
+      className="relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#FF6E4B] via-[#FF4D7B] to-[#B84FB8] overflow-visible pb-0"
     >
-      {/* Dot pattern overlay */}
+      {/* Subtle dot pattern overlay */}
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-          backgroundSize: '30px 30px',
+          backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.8) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
           backgroundPosition: '0 0',
         }}
       ></div>
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center pt-4 pb-20">
+      <div className="relative z-10 max-w-5xl mx-auto text-center pt-4 pb-32">
         <H1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6 font-bold leading-tight tracking-tight">
           Bring Deine Skills auf das nächste Level
         </H1>
@@ -107,6 +102,20 @@ export default function HomePage() {
             Suche konfigurieren ⇘
           </CTAButton>
         </div>
+      </div>
+
+      {/* SVG Curved shape at bottom */}
+      <div className="custom-shape-divider-bottom">
+        <svg
+          viewBox="0 0 1440 171"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="shape-fill"
+            d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,112C960,117,1056,107,1152,96C1248,85,1344,75,1392,69.3L1440,64L1440,171L1392,171C1344,171,1248,171,1152,171C1056,171,960,171,864,171C768,171,672,171,576,171C480,171,384,171,288,171C192,171,96,171,48,171L0,171Z"
+          ></path>
+        </svg>
       </div>
     </div>
   )

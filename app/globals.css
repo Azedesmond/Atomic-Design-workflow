@@ -149,3 +149,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Shape Divider for Hero Section */
+.custom-shape-divider-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom svg {
+  position: relative;
+  display: block;
+  width: calc(194% + 1.3px);
+  height: 150px;
+}
+
+.custom-shape-divider-bottom .shape-fill {
+  fill: #FFFFFF;
+}
